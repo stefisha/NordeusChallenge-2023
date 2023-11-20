@@ -42,6 +42,30 @@ To run the models and evaluate their performance, follow these steps:
 5. Use the trained models to make predictions on the preprocessed test data.
 6. Analyze the results, and adjust the models or preprocessing steps as needed.
 
+## Discussion
+In this section, you can provide insights and observations from the project. This might include:
+- Challenges faced during model development.
+- Key findings from the data analysis and modeling process.
+- Interpretation of model results and their implications.
+
+## Future Improvements
+There are several areas where this project can be further enhanced:
+1. **Advanced Modeling Techniques**: Experimenting with more sophisticated machine learning algorithms or deep learning models.
+2. **Feature Engineering**: Exploring additional features or transformations that could improve model performance.
+3. **Hyperparameter Tuning**: More extensive tuning of model parameters to optimize performance.
+4. **Data Augmentation**: Increasing the dataset size or variety, possibly by incorporating additional relevant data sources.
+5. **Model Interpretability**: Implementing tools and techniques for better understanding and interpreting the model's decisions.
+6. **Deployment Strategy**: Developing a plan for deploying the model in a real-world environment, ensuring scalability and maintainability.
+
+## Usage
+To run the models and evaluate their performance, follow these steps:
+1. Load the datasets `jobfair_train.csv` and `jobfair_test.csv`.
+2. Preprocess the data as per the preprocessing steps outlined in the code.
+3. Train the machine learning models using the preprocessed training data.
+4. Evaluate the models using cross-validation techniques.
+5. Use the trained models to make predictions on the preprocessed test data.
+6. Analyze the results, and adjust the models or preprocessing steps as needed.
+
 ## Repository Structure
 - `README.md`: This file, providing an overview and instructions.
 - `NordeusChallenge.ipynb`: Contains code for the challenge.

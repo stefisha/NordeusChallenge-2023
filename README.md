@@ -20,7 +20,8 @@ We explore several models:
 - XGBoostClassifier
 - LGBMClassifier
 - DecisionTreeClassifier
-- StackingClassifier (with Logistic Regression as the final estimator), however due to insufficient time, this models was abandoned
+
+On top of this, we also used a StackingClassifier (with Logistic Regression as the final estimator), however due to insufficient time, this model was abandoned.
 
 ## Setup and Installation
 Make sure Python is installed on your system. Dependencies include:
@@ -66,5 +67,5 @@ To run the models and evaluate their performance, follow these steps:
 - `league_rank_predictions.csv`: Includes all the predictions.
 
 ## License
-This project is licensed under the [MIT License](LICENSE.txt).
+This project was realised as part of the JobFiar 2023 Nordeus challenge.
 

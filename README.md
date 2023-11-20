@@ -42,12 +42,6 @@ To run the models and evaluate their performance, follow these steps:
 5. Use the trained models to make predictions on the preprocessed test data.
 6. Analyze the results, and adjust the models or preprocessing steps as needed.
 
-## Discussion
-In this section, you can provide insights and observations from the project. This might include:
-- Challenges faced during model development.
-- Key findings from the data analysis and modeling process.
-- Interpretation of model results and their implications.
-
 ## Future Improvements
 There are several areas where this project can be further enhanced:
 1. **Advanced Modeling Techniques**: Experimenting with more sophisticated machine learning algorithms or deep learning models.

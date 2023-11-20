@@ -35,7 +35,7 @@ Make sure Python is installed on your system. Dependencies include:
 Install these using pip:
 ```bash
 pip install pandas scikit-learn xgboost matplotlib
-
+```
 ## Usage
 To run the models and evaluate their performance, follow these steps:
 1. Load the datasets `jobfair_train.csv` and `jobfair_test.csv`.

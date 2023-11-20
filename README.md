@@ -33,7 +33,7 @@ Make sure Python is installed on your system. Dependencies include:
 - matplotlib
 
 Install these using pip:
-```bash
+```
 pip install pandas scikit-learn xgboost matplotlib
 ```
 ## Usage

@@ -45,12 +45,13 @@ To run the models and evaluate their performance, follow these steps:
 
 ## Future Improvements
 There are several areas where this project can be further enhanced:
-1. **Advanced Modeling Techniques**: Experimenting with more sophisticated machine learning algorithms or deep learning models.
-2. **Feature Engineering**: Exploring additional features or transformations that could improve model performance.
-3. **Hyperparameter Tuning**: More extensive tuning of model parameters to optimize performance.
-4. **Data Augmentation**: Increasing the dataset size or variety, possibly by incorporating additional relevant data sources.
-5. **Model Interpretability**: Implementing tools and techniques for better understanding and interpreting the model's decisions.
-6. **Deployment Strategy**: Developing a plan for deploying the model in a real-world environment, ensuring scalability and maintainability.
+1. **Further Data Exploration**: Implementing more sophisticated data exploration techqniues (eg. different plots) to avoid having a large bias.
+2. **Advanced Modeling Techniques**: Experimenting with more sophisticated machine learning algorithms or deep learning models.
+3. **Feature Engineering**: Exploring additional features or transformations that could improve model performance.
+4. **Hyperparameter Tuning**: More extensive tuning of model parameters to optimize performance.
+5. **Data Augmentation**: Increasing the dataset size or variety, possibly by incorporating additional relevant data sources.
+6. **Model Interpretability**: Implementing tools and techniques for better understanding and interpreting the model's decisions.
+7. **Deployment Strategy**: Developing a plan for deploying the model in a real-world environment, ensuring scalability and maintainability.
 
 ## Usage
 To run the models and evaluate their performance, follow these steps:

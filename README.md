@@ -1,7 +1,7 @@
 # Nordeus Data Science Challenge
 
 ## Project Overview
-This project is a submission for the Nordeus JobFair Data Science Challenge, dedicated to predicting league ranks for players playing Top Eleven. Using machine learning models, the aim to forecast the league position of each user at the end of a season. Presumably, the goal is to create a balanced and competitive experience for players.
+This project is a submission for the Nordeus JobFair Data Science Challenge, dedicated to predicting league ranks for clubs inside of Top Eleven. Using machine learning models, the aim to forecast the league position of each club at the end of a season. Presumably, the goal is to create a balanced and competitive experience for players.
 
 ## Environment
 The project was realised inside Google Colab, utilising its resources, because of the limited computing perfornace of the local machine.

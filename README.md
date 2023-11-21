@@ -20,8 +20,7 @@ We explore several models:
 - XGBoostClassifier
 - LGBMClassifier
 - DecisionTreeClassifier
-
-On top of this, we also used a StackingClassifier (with Logistic Regression as the final estimator), however due to insufficient time, this model was abandoned.
+- StackingClassifier (with Logistic Regression as the final estimator), achieving the best MAE of 2.59
 
 ## Setup and Installation
 Make sure Python is installed on your system. Dependencies include:

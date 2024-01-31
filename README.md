@@ -1,4 +1,4 @@
-# Nordeus Data Science Challenge
+# Nordeus Data Science Challenge Submission
 
 ## Project Overview
 This project is a submission for the Nordeus JobFair Data Science Challenge, dedicated to predicting league ranks for clubs inside of Top Eleven. Using machine learning models, the aim to forecast the league position of each club at the end of a season. Presumably, the goal is to create a balanced and competitive experience for players.

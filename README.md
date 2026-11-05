@@ -1,71 +1,113 @@
-# Nordeus Data Science Challenge Submission
+# Nordeus Data Science Challenge 2023
 
-## Project Overview
-This project is a submission for the Nordeus JobFair Data Science Challenge, dedicated to predicting league ranks for clubs inside of Top Eleven. Using machine learning models, the aim to forecast the league position of each club at the end of a season. Presumably, the goal is to create a balanced and competitive experience for players.
+**Predicting Top Eleven league positions**
 
-## Environment
-The project was realised inside Google Colab, utilising its resources, because of the limited computing perfornace of the local machine.
+Predict each club's final position in a league of 14 teams using player quality,
+activity, engagement, and resource features from the previous season. The challenge
+supports the broader goal of creating fair and competitive league matchmaking.
 
-## Dataset
-The project utilizes two datasets:
-- `jobfair_train.csv` - Contains features like user activity, player statistics, and the target variable `league_rank`.
-- `jobfair_test.csv` - Similar to the training dataset but without the target variable, for model prediction.
+[Notebook](NordeusChallenge.ipynb) · [Submission](league_rank_predictions.csv) · [Challenge brief](Challenge/1.%20Data%20Science%20challenge-%20JobFair%202023.pdf)
 
-## Features
-Features include user engagement metrics, player quality indicators, and other relevant game activity data.
+## Task and data
 
-## Machine Learning Models
-We explore several models:
-- RandomForestClassifier
-- XGBoostClassifier
-- LGBMClassifier
-- DecisionTreeClassifier
-- StackingClassifier (with Logistic Regression as the final estimator), achieving the best MAE of 2.59
+| Dataset | Season | Clubs | Leagues | Purpose |
+| --- | ---: | ---: | ---: | --- |
+| `Challenge/jobfair_train.csv` | 173 | 55,314 | 3,951 | Labeled training data |
+| `Challenge/jobfair_test.csv` | 174 | 60,270 | 4,305 | Prediction inputs |
 
-## Setup and Installation
-Make sure Python is installed on your system. Dependencies include:
-- pandas
-- scikit-learn
-- xgboost
-- matplotlib
+Every league contains 14 clubs. The target, `league_rank`, ranges from 1 for first
+place to 14 for last place. Test labels are not included. Predictions are evaluated
+using **mean absolute error (MAE)**, measured in league positions; lower is better.
 
-Install these using pip:
+The inputs include team age and quality, previous activity and match outcomes,
+training, spending and resource balances, and registration categories. `club_id`
+and `league_id` are retained for identification and excluded from model inputs.
+
+## Models and saved results
+
+The notebook compares classification approaches with numerical imputation and
+categorical one hot encoding. It also includes exploratory parameter searches and
+feature importance analysis.
+
+| Model | Saved five fold MAE |
+| --- | ---: |
+| Random forest | 2.8027 |
+| XGBoost | 2.7959 |
+| LightGBM | 2.8163 |
+| Random forest and XGBoost stacking | **2.5997** |
+
+These values come from saved notebook outputs on the training season. They are
+not independently reproduced benchmarks or scores on the hidden test labels.
+The stacking classifier uses logistic regression to combine the base models and
+produces the checked in submission.
+
+## Run locally
+
+Use Python 3.9 to 3.12 and start Jupyter from the repository root:
+
+```sh
+git clone https://github.com/stefisha/NordeusChallenge-2023.git
+cd NordeusChallenge-2023
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt jupyterlab
+jupyter lab NordeusChallenge.ipynb
 ```
-pip install pandas scikit-learn xgboost matplotlib
+
+On Windows, activate with `.venv\Scripts\activate`. The notebook defaults to the
+included `Challenge/` directory. For another data location, set `NORDEUS_DATA_DIR`
+before running its loading cell. In Colab, download the two CSV files or mount your
+own storage and point that variable to their directory.
+
+The requirements pin the notebook dependencies, not the original Colab environment.
+The notebook contains repeated model fitting, nested stacking validation, and
+parameter searches. Review those cells before running the entire notebook; the
+complete training procedure has not been rerun as part of repository validation.
+
+## Submission
+
+`league_rank_predictions.csv` contains **60,270 rows**, one per test club:
+
+| Column | Meaning |
+| --- | --- |
+| `club_id` | Club identifier in the test dataset |
+| `predicted_league_rank` | Predicted integer position from 1 to 14 |
+
+Check the file contract and current notebook link without installing model libraries:
+
+```sh
+python scripts/validate_submission.py
 ```
-## Usage
-To run the models and evaluate their performance, follow these steps:
-1. Load the datasets `jobfair_train.csv` and `jobfair_test.csv`.
-2. Preprocess the data as per the preprocessing steps outlined in the code.
-3. Train the machine learning models using the preprocessed training data.
-4. Evaluate the models using cross-validation techniques.
-5. Use the trained models to make predictions on the preprocessed test data.
-6. Analyze the results, and adjust the models or preprocessing steps as needed.
 
-## Future Improvements
-There are several areas where this project can be further enhanced:
-1. **Further Data Exploration**: Implementing more sophisticated data exploration techqniues (eg. different plots) to avoid having a large bias.
-2. **Advanced Modeling Techniques**: Experimenting with more sophisticated machine learning algorithms or deep learning models.
-3. **Feature Engineering**: Exploring additional features or transformations that could improve model performance.
-4. **Hyperparameter Tuning**: More extensive tuning of model parameters to optimize performance.
-5. **Data Augmentation**: Increasing the dataset size or variety, possibly by incorporating additional relevant data sources.
-6. **Model Interpretability**: Implementing tools and techniques for better understanding and interpreting the model's decisions.
-7. **Deployment Strategy**: Developing a plan for deploying the model in a real-world environment, ensuring scalability and maintainability.
+The validator checks unique clubs, test ordering, required columns, and prediction
+bounds. GitHub Actions runs the same check on pushes and pull requests. It does
+not evaluate predictive accuracy or enforce a complete league ordering.
 
-## Usage
-To run the models and evaluate their performance, follow these steps:
-1. Load the datasets `jobfair_train.csv` and `jobfair_test.csv`.
-2. Preprocess the data as per the preprocessing steps outlined in the code.
-3. Train the machine learning models using the preprocessed training data.
-4. Evaluate the models using cross-validation techniques.
-5. Use the trained models to make predictions on the preprocessed test data.
-6. Analyze the results, and adjust the models or preprocessing steps as needed.
+## Evaluation considerations
 
-## Repository Structure
-- `README.md`: This file, providing an overview and instructions.
-- `NordeusChallenge.ipynb`: Contains code for the challenge.
-- `league_rank_predictions.csv`: Includes all the predictions.
+The notebook fits preprocessing before cross validation and splits clubs rather
+than holding out complete leagues. A stronger evaluation should fit transformations
+inside each fold and assess generalization to unseen leagues and later seasons.
 
-## License
-This project was realised as part of the JobFiar 2023 Nordeus challenge.
+The classifiers predict clubs independently, so positions can repeat within a
+league. They do not enforce a permutation of positions 1 to 14. Regression or an
+ordinal model with an explicit league ranking step would be useful alternatives.
+The MAE objective also deserves consideration when choosing how class probabilities
+become a final predicted position.
 
+## Repository contents
+
+```text
+NordeusChallenge.ipynb        Modeling, exploration, and saved outputs
+league_rank_predictions.csv  Submitted club predictions
+Challenge/                   Task brief and supplied datasets
+scripts/                     Lightweight submission validation
+requirements.txt             Notebook dependencies
+.github/workflows/           Automated file validation
+```
+
+The challenge brief and datasets are supplied assessment materials. Their inclusion
+does not assert a separate redistribution license.
+
+**Author:** [Stefan Veličković](https://github.com/stefisha)
